@@ -8,7 +8,9 @@ const mongoDBConfig = config.mongodb;
 const mongodbProtocol = mongoDBConfig.protocol || 'mongodb';
 const userNamePwd = mongoDBConfig.username ? `${mongoDBConfig.username}:${mongoDBConfig.pasword}@` : '';
 
-let mongodbUrl = `${mongodbProtocol}://${userNamePwd}${mongoDBConfig.host}/${mongoDBConfig.dbName}?authSource=admin&retryWrites=true`;
+let mongodbUrl = `${mongodbProtocol}://${userNamePwd}${mongoDBConfig.host}/${mongoDBConfig.dbName}?${
+  userNamePwd ? 'authSource=admin' : ''
+}retryWrites=true`;
 
 if (mongoDBConfig.replicaSet) {
   mongodbUrl += `&replicaSet=${mongoDBConfig.replicaSet}`;

@@ -7,4 +7,9 @@ const APP_CONSTANTS = {
   service: 'express-template',
 };
 
-export { APP_CONSTANTS };
+const DEFAULT_PAGING = {
+  limit: 100,
+  skip: 0,
+};
+
+export { APP_CONSTANTS, DEFAULT_PAGING };
