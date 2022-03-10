@@ -15,8 +15,10 @@ const getUsers = async (query: any) => {
   const skip = Number(query.skip) || DEFAULT_PAGING.skip;
   const limit = Number(query.limit) || DEFAULT_PAGING.limit;
 
-  const count = await UserModel.count(queryParams);
-  const users = await UserModel.find(queryParams).skip(skip).limit(limit);
+  const [count, users] = await Promise.all([
+    UserModel.count(queryParams),
+    UserModel.find(queryParams).skip(skip).limit(limit),
+  ]);
 
   return {
     total: count,
